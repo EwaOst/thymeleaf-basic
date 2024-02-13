@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!--    <link rel="stylesheet" href="">-->
+    <title>Books</title>
+</head>
+<body>
+<h1>Nasze książki</h1>
+
+<tr th:each="book : ${books}">
+    <td th:text="${book.getAuthor()}"></td><br>
+    <td th:text="${book.getTitle()}"></td><br>
+    <hr>
+</tr>
+
+<form th:action="@{/book/addBook}" th:object="${newBook}" method="post">
+    <p>Name: <input type="text" placeholder="Tu wpisz autora" th:field="*{author}"></p>
+    <p>Title: <input type="text" placeholder="Tu tytuł" th:field="*{title}"></p>
+    <p> <input type="submit" value="Add"></p>
+</form>
+
+<form th:action="@{/book/removeBook1}" method="post">
+    <!--<form th:action="@{/book/removeBook}" th:object="${newBook}" method="post">-->
+    <p>Author: <input type="text" name="author" placeholder="Wpisz autora do usunięcia"></p>
+    <p>Author: <input type="text" name="title" placeholder="Wpisz autora do usunięcia"></p>
+    <!--    <p>Author: <input th:field="*{author}" type="text" name="author" placeholder="Wpisz autora do usunięcia"></p>-->
+    <p><input type="submit" value="Remove books"></p>
+</form>
+
+</body>
+</html>
